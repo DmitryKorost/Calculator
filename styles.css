@@ -1,7 +1,4 @@
 
-body {
-
-}
 
 body button, input{
     padding: 10px;
@@ -25,12 +22,6 @@ button:hover {
     border: 1px solid #000000;
     border-radius: 20px;
 
-}
-
-
-.windows {
-    /* height: 110px; */
-    /* width: 30px; */
 }
 
 .windows__logs {
