@@ -1,13 +1,8 @@
 
-let variable = 0;
-
-function getNummer () {
-  return variable;
-}
-
-function setNumber (number) {
-  variable = number;
-}
+let variable = '';
+let variableTwo = '';
+let action = '';
+let memory = '';
 
 const buttonOne = document.querySelector('.button__one');
 const buttonTwo = document.querySelector('.button__two');
@@ -21,6 +16,10 @@ const buttonNine = document.querySelector('.button__nine');
 const buttonPlusMinus = document.querySelector('.button__plus-minus');
 const buttonZero = document.querySelector('.button__zero');
 const buttonComma = document.querySelector('.button__comma');
+const buttonPlus = document.querySelector('.button__plus');
+const buttonMinus = document.querySelector('.button__minus');
+const buttonMultiply = document.querySelector('.button__multiply');
+const buttonSplit = document.querySelector('.button__split');
 const buttonMemoryClear = document.querySelector('.button__memory-clear');
 const buttonMemoryRead = document.querySelector('.button__memory-read');
 const buttonMemorySave = document.querySelector('.button__memory-save');
@@ -29,8 +28,19 @@ const buttonMemoryMinus = document.querySelector('.button__memory-minus');
 const buttonBacspeys = document.querySelector('.button__bacspeys');
 const buttonClear = document.querySelector('.button__clear');
 const buttonEqual = document.querySelector('.button__equal');
+
 const windowsInput = document.querySelector('.windows__input');
- 
+const windowsLogs = document.querySelector('.windows__logs'); 
+
+function setNumber (number) {
+  if (number === 'Infinity' || number === '-Infinity') {  
+    alert('Текстовое значение удалено!');
+    return '';
+  } else {
+    variable = number;
+  }  
+}
+
 buttonZero.addEventListener('click', function () {
   setNumber(windowsInput.value + 0);
   windowsInput.value = variable
@@ -82,6 +92,91 @@ buttonNine.addEventListener('click', function () {
 });  
 
 buttonComma.addEventListener('click', function () {
-  setNumber(windowsInput.value * 2);
-  windowsInput.value = variable
+  setNumber(windowsInput.value + '.');
+  windowsInput.value = variable;
+}); 
+
+buttonPlusMinus.addEventListener('click', function () {
+  setNumber(windowsInput.value * -1);
+  windowsInput.value = variable;
+}); 
+
+buttonPlus.addEventListener('click', function () {
+  setNumber(windowsInput.value);
+  variableTwo = variable;
+  windowsInput.value = '';
+  action = 'plus';
+  windowsLogs.value = variableTwo + ' +';
+}); 
+
+buttonMinus.addEventListener('click', function () {
+  setNumber(windowsInput.value);
+  variableTwo = variable;
+  windowsInput.value = '';
+  action = 'minus';
+  windowsLogs.value = variableTwo + ' -';
+}); 
+
+buttonMultiply.addEventListener('click', function () {
+  setNumber(windowsInput.value);
+  variableTwo = variable;
+  windowsInput.value = '';
+  action = 'multiply';
+  windowsLogs.value = variableTwo + ' *';
+}); 
+
+buttonSplit.addEventListener('click', function () {
+  setNumber(windowsInput.value);
+  variableTwo = variable;
+  windowsInput.value = '';
+  action = 'split';
+  windowsLogs.value = variableTwo + ' /';
+}); 
+
+buttonEqual.addEventListener('click', function () {
+  windowsLogs.value = windowsLogs.value + ' ' + variable + ' =';
+  switch(action) {
+    case '': alert('Нажмите действие!'); break;
+    case 'plus': windowsInput.value = +variableTwo + +variable; break;
+    case 'minus': windowsInput.value = +variableTwo - +variable; break;
+    case 'multiply': windowsInput.value = +variableTwo * +variable; break;
+    case 'split': windowsInput.value = +variableTwo / +variable; break;
+    }
+}); 
+
+buttonBacspeys.addEventListener('click', function () {
+  if (windowsInput.value === '') {
+    alert('Не введено значение');
+  } else {
+    let arc = windowsInput.value + '';   
+    windowsInput.value = arc.slice(0, -1)
+  }
+}); 
+
+buttonClear.addEventListener('click', function () {
+  variableTwo = 0;
+  variable = 0;
+  action = '';
+  windowsInput.value = '';
+  windowsLogs.value = '';
+}); 
+
+buttonMemoryClear.addEventListener('click', function () {
+  memory = '';
+}); 
+
+buttonMemoryRead.addEventListener('click', function () {
+  windowsInput.value = memory;
+}); 
+
+buttonMemorySave.addEventListener('click', function () {
+  memory = windowsInput.value;
+}); 
+
+buttonMemoryPlus.addEventListener('click', function () {
+  memory = +memory + +windowsInput.value;
+}); 
+
+buttonMemoryMinus.addEventListener('click', function () {
+  memory = +memory - +windowsInput.value;
 }); 
