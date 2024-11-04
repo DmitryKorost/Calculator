@@ -15,10 +15,11 @@
         <section>
             <input type="text" class="windows__logs" disabled>
             <input 
-                type="number" 
+                type="tex" 
                 class="windows__input" 
                 id="window"
-                placeholder="111"
+                placeholder="0"
+                onkeyup="this.value = this.value.replace(/^(-)|[^0-9.+-]+/g,'');"
                 autofocus>
         </section>
         <section class="button">
@@ -50,9 +51,6 @@
     </main>
     <footer>
     </footer>
-    <script src="script.js">
-  
-        
-            </script>
+    <script src="script.js"></script>
 </body>
 </html>
