@@ -17,16 +17,19 @@ button:hover {
 .main {
     padding: 10px;
     background-color: rgb(165, 255, 138);
-    height: 430px;
+    height: 450px;
     width: 360px;
     border: 1px solid #000000;
     border-radius: 20px;
 
 }
 
-.windows__logs {
+.windows__logs, .windows__memory  {
+    margin-top: 2px;
     width: 335px;
     height: 10px;
+    text-align: right;
+    font-size: 15px;
 }
 
 .windows__input {
@@ -34,6 +37,7 @@ button:hover {
     margin-bottom: 10px;
     width: 335px;
     height: 30px;
+    text-align: right;
 }
 
 .windows__input::-webkit-inner-spin-button {

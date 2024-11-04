@@ -31,14 +31,25 @@ const buttonEqual = document.querySelector('.button__equal');
 
 const windowsInput = document.querySelector('.windows__input');
 const windowsLogs = document.querySelector('.windows__logs'); 
+const windowsMemory = document.querySelector('.windows__memory'); 
 
 function setNumber (number) {
-  if (number === 'Infinity' || number === '-Infinity') {  
+    if (number === 'Infinity' || number === '-Infinity') {  
     alert('Текстовое значение удалено!');
     return '';
-  } else {
+  } else if (number.slice(0, 1) === '.') {
+    number = number.replaceAll(".", "");
+    number = number.slice(0, 1) + number.slice(1).replaceAll("+", "");
+    number = number.slice(0, 1) + number.slice(1).replaceAll("-", "");   
+    windowsInput.value = '0.' + number;
+    variable = '0.' + number;
+  }  else {
+    number = number.slice(0, 2) + number.slice(2).replaceAll(".", "");
+    number = number.slice(0, 1) + number.slice(1).replaceAll("+", "");
+    number = number.slice(0, 1) + number.slice(1).replaceAll("-", "");
+    windowsInput.value = number;
     variable = number;
-  }  
+  }
 }
 
 buttonZero.addEventListener('click', function () {
@@ -163,6 +174,7 @@ buttonClear.addEventListener('click', function () {
 
 buttonMemoryClear.addEventListener('click', function () {
   memory = '';
+  windowsMemory.value = memory;
 }); 
 
 buttonMemoryRead.addEventListener('click', function () {
@@ -171,12 +183,16 @@ buttonMemoryRead.addEventListener('click', function () {
 
 buttonMemorySave.addEventListener('click', function () {
   memory = windowsInput.value;
+  windowsMemory.value = 'M: ' + memory;
+
 }); 
 
 buttonMemoryPlus.addEventListener('click', function () {
   memory = +memory + +windowsInput.value;
+  windowsMemory.value = 'M: ' + memory;
 }); 
 
 buttonMemoryMinus.addEventListener('click', function () {
   memory = +memory - +windowsInput.value;
+  windowsMemory.value = 'Memory: ' + memory;
 }); 
