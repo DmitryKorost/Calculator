@@ -1,4 +1,3 @@
-
 let variable = '';
 let variableTwo = '';
 let action = '';
